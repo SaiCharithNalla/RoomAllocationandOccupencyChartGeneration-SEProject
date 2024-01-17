@@ -1,0 +1,6 @@
+projectKey=OccupancyChart
+serverUrl=http://localhost:9099
+serverVersion=10.0.0.68432
+dashboardUrl=http://localhost:9099/dashboard?id=OccupancyChart
+ceTaskId=AYi7pRrpTyV7Quoatf51
+ceTaskUrl=http://localhost:9099/api/ce/task?id=AYi7pRrpTyV7Quoatf51

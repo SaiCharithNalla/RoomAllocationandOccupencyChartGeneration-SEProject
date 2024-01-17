@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Admin Dashboard</title>
+    <!-- Link to CSS stylesheet -->
+    <link rel="stylesheet" type="text/css" href="styled.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    
+    <style>
+      .notification-dropdown {
+        right: 0; /* Add this to align the dropdown to the right */
+      }
+    </style>
+
+  </head>
+  <body>
+    <header>
+        <nav class="navbar">
+            <div class="dropdown">
+                <button class="dropbtn"><div class="container" >
+                    <div class="bar1"></div>
+                    <div class="bar2"></div>
+                    <div class="bar3"></div>
+                  </div></button>
+                <div class="dropdown-content">
+                  <a href="#">Accounts</a>
+                  <a href="#">Classrooms</a>
+                  <a href="occupancychart.html">View Chart</a>
+                  <a href="#">Loghistory</a>
+                </div>
+              </div>
+           
+            
+              
+          <h1 class="navbar-brand">CRMS</h1>
+          <div class="navbar-right">
+            <div class="dropdown">
+              <a  class="welcome-text">Welcome, [User Name]<i class="fas fa-caret-down"></i></a>
+              <div class="dropdown-content user-dropdown">
+               <!--<a href="#">Switch Accounts</a> --> 
+               <p class="logout-menu" ></p>
+                <a  href="login.html">Logout</a>
+              </div>
+            </div>
+      
+            <!--<p class="welcome-text">Welcome, [User Name]</p>-->
+            <div class="navbar-time">
+              <p class="current-time"></p>
+            </div>
+            <div class="dropdown">
+            <a class="notification-button"><i class="fas fa-bell"></i></a>
+            <div class="dropdown-content notification-dropdown">
+              <!--<a href="#">Switch Accounts</a> --> 
+              <p class="notification-menu" ></p>
+              
+               <a  href="send_msg.php">send notification</a>
+               <a  href="index.php">my notification</a>
+             </div>
+          </div>
+        </div>
+          
+         
+        </nav>
+        <fieldset style="background-image: url('ab3.jpg');background-repeat: no-repeat;background-size: cover;height: 490pt;"></fieldset>
+        
+      </header>
+      
+
+
+      
+      
+    <!-- <nav>
+      <ul>
+        <li><button class="account-button">Accounts</button></li>
+        <li><button class="classroom-button">Classrooms</button></li>
+        <li><button class="chart-button">View Chart</button></li>
+        <li><button class="notification-button">Notifications</button></li>
+      </ul>
+    </nav> -->
+
+    <script>// Get the current time and format it
+        function getTime() {
+          const date = new Date();
+          const hours = date.getHours();
+          const minutes = date.getMinutes();
+          const seconds = date.getSeconds();
+          const ampm = hours >= 12 ? 'PM' : 'AM';
+          const formattedHours = hours % 12 === 0 ? 12 : hours % 12;
+          const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+          const formattedSeconds = seconds < 10 ? `0${seconds}` : seconds;
+          const currentTime = `${formattedHours}:${formattedMinutes}:${formattedSeconds} ${ampm}`;
+          
+          return currentTime;
+        }
+        
+        // Update the current time every second
+        function updateTime() {
+          const currentTimeElement = document.querySelector('.current-time');
+          setInterval(() => {
+            const currentTime = getTime();
+            currentTimeElement.textContent = currentTime;
+          }, 1000);
+        }
+        
+        updateTime();
+       
+            // Toggle the dropdown menu when the menu button is clicked
+const menuButton = document.querySelector('.menu-button');
+const menu = document.querySelector(".menu");
+const dropdownMenu = document.querySelector('.dropdown-menu');
+
+menuButton.addEventListener('click', () => {
+  dropdownMenu.classList.toggle('show');
+});
+
+// Hide the dropdown menu when the user clicks outside of it
+window.addEventListener('click', (event) => {
+  if (!event.target.matches('.menu-button')) {
+    if (dropdownMenu.classList.contains('show')) {
+      dropdownMenu.classList.remove('show');
+    }
+  }
+});
+
+const logoutLink = document.querySelector('.logout-menu a');
+logoutLink.addEventListener('click', () => {
+  // Perform logout functionality here, e.g. clear user session
+  
+  // Redirect to the login page
+  window.location.href = 'login.html';
+});
+        
+    //notifications
+
+    const notificationButton = document.querySelector('.notification-button');
+    const notificationDropdown = document.querySelector('.dropdown-content.notification-dropdown');
+
+notificationButton.addEventListener('click', () => {
+  notificationDropdown.classList.toggle('show');
+});
+
+// Hide the notification dropdown when the user clicks outside of it
+window.addEventListener('click', (event) => {
+  if (!event.target.matches('.notification-button')) {
+    if (notificationDropdown.classList.contains('show')) {
+      notificationDropdown.classList.remove('show');
+    }
+  }
+});
+
+</script>
+
+      
+        
+       
+</body>
+</html>

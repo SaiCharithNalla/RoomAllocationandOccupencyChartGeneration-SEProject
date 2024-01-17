@@ -1,0 +1,105 @@
+html,body {
+    height: 100%;
+}
+
+body.my-login-page {
+    background:rgb(140, 212, 196);
+    background: radial-gradient(circle, rgba(0,153,255,0.1390756986388305) 32%, rgba(0,11,117,0.1474790599833683) 100%);
+    font-size: 14px;
+}
+
+.my-login-page .brand {
+    width: 111px;
+    height: 111px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin: 40px auto;
+    box-shadow: 0 5px 10px rgba(0,0,0,.10);
+    position: relative;
+    z-index: 1;
+    transition: 3s;
+    background: rgba(36,39,52,0.3);
+}
+
+.my-login-page .brand img {
+    width: 100%;
+}
+
+.my-login-page .card-wrapper {
+    width: 450px;
+}
+
+.my-login-page .card {
+    border-color: transparent;
+    box-shadow: 0 4px 8px rgba(0,0,0,.05);
+}
+
+.my-login-page .card.fat {
+    padding: 10px;
+    background: rgba(36,39,52,0.3);;
+    border-radius: 35px;
+}
+
+.my-login-page .card .card-title {
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 35px;
+    color: black;
+
+
+}
+.login-logo {
+        width: 400px; /* Adjust the width as per your needs */
+        height: 120px; /* Adjust the height as per your needs */
+        float: center;
+        margin-right: 20px; /* Optional: Add margin for spacing */
+    }
+.my-login-page .form-control {
+    border-width: 2.3px;
+}
+
+.my-login-page .form-group label {
+    width: 100%;
+}
+
+.my-login-page .btn.btn-block {
+    padding: 12px 10px;
+}
+
+.my-login-page .footer {
+    margin: 40px 0;
+    color: #888;
+    text-align: center;
+}
+
+@media screen and (max-width: 425px) {
+    .my-login-page .card-wrapper {
+        width: 90%;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .my-login-page .card.fat {
+        padding: 0;
+    }
+
+    .my-login-page .card.fat .card-body {
+        padding: 15px;
+    }
+}
+
+#decoration {
+    text-decoration: none;
+}
+
+.hover{
+    transition: 4s;
+    transform: rotate(360deg);
+    position: relative;
+}
+.svg-bg {
+    position: fixed;
+    bottom: 0;
+    z-index: -2;
+}

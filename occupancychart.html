@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Occupancy chart</title>
+	<style>
+		body {
+			background-color: rgb(140, 212, 196);
+			margin: 0;
+			padding: 0;
+			font-family: Arial, sans-serif;
+		}
+		
+		#header {
+			height: 50px;
+			background-color: #000000;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 0 20px;
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			z-index: 1;
+		}
+		
+		#header h1 {
+			margin: 0;
+			font-size: 24px;
+			font-weight: bolder;
+            color: crimson;
+		}
+		
+		#header button {
+			background-color: transparent;
+			border: none;
+			color: #333;
+			font-size: 16px;
+			font-weight: bold;
+			padding: 10px 20px;
+			cursor: pointer;
+			transition: background-color 0.3s ease;
+		}
+		
+		#header button:hover {
+			background-color: #ccc;
+		}
+		
+		
+		
+		
+		@keyframes marquee {
+			from { transform: translateX(0%); }
+			to { transform: translateX(-100%); }
+		}
+		
+		#calendar {
+			margin-top: 100px;
+			padding: 20px;
+			background-color: #fff;
+			max-width: 600px;
+			margin-left: auto;
+			margin-right: auto;
+			border-radius: 10px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+		}
+		
+		#calendar h2 {
+			margin-top: 0;
+			margin-bottom: 20px;
+			font-size: 24px;
+			font-weight: normal;
+		}
+		
+		#calendar label {
+			display: block;
+			margin-bottom: 10px;
+			font-size: 16px;
+			font-weight: bold;
+		}
+		
+		#calendar input[type="date"] {
+			display: block;
+			width: 100%;
+			padding: 10px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			font-size: 16px;
+			margin-bottom: 20px;
+			box-sizing: border-box;
+		}
+		
+		#calendar select {
+			display: block;
+			width: 100%;
+			padding: 10px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			font-size: 16px;
+			margin-bottom: 20px;
+			box-sizing: border-box;
+		}
+		
+		#calendar button {
+			background-color: #279a98;
+			color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-right: 10px;
+        }
+        
+        #calendar button:hover {
+            background-color: #1c7c7a;
+        }
+        
+        #calendar .icon {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            background-image: url('eye-icon.png');
+            background-repeat: no-repeat;
+            background-size: 16px;
+            margin-right: 10px;
+        }
+        
+        #calendar a {
+            display: inline-block;
+            background-color: #279a98;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        
+        #calendar a:hover {
+            background-color: #1c7c7a;
+        }
+        
+        @media only screen and (max-width: 600px) {
+            #calendar {
+                margin-top: 200px;
+            }
+        }
+    </style>
+    </head>
+    <body>
+        <div id="header">
+            <h1>OCCUPANCY CHART</h1>
+            <div>
+                <button>Manage Accounts</button>
+                <button>Manage Class Rooms</button>
+                <button>Occupancy Chart</button>
+                <button>Feedbacks</button>
+                <button>Notification</button>
+            </div>
+        </div>
+        
+        <div id="calendar">
+            <h2>Calendar</h2>
+           
+            <label>From</label>
+            <input type="date" id="start-date">
+            <label>To</label>
+
+            <input type="date" id="end-date">
+            <label>Room Filter</label>
+            <select id="room-filter">
+                <option value="all">All Rooms</option>
+                <option value="room1">Room 1</option>
+                <option value="room2">Room 2</option>
+                <option value="room3">Room 3</option>
+            </select>
+            <button><span class="icon"></span>View Chart</button>
+            <a href="#"><span class="icon"></span>Download/Export</a>
+        </div>
+        <script>
+            const startDateInput = document.getElementById('start-date');
+            const endDateInput = document.getElementById('end-date');
+          
+            startDateInput.addEventListener('change', () => {
+              if (new Date(startDateInput.value) > new Date(endDateInput.value)) {
+                endDateInput.value = startDateInput.value;
+              }
+            });
+          
+            endDateInput.addEventListener('change', () => {
+              if (new Date(endDateInput.value) < new Date(startDateInput.value)) {
+                startDateInput.value = endDateInput.value;
+              }
+            });
+          </script>
+          
+    </body>
+    </html>
+    
+    
+    
+    
+    
+
+            

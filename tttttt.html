@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Faculty Timetable</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            text-align: center;
+        }
+
+        th {
+            background-color: #a39f9f;
+            color: #fff;
+            padding: 8px;
+            border: 1px solid #898585;
+        }
+
+        td {
+            padding: 8px;
+            border: 1px solid #898585;
+        }
+
+        .slot {
+            background-color: #fff;
+        }
+
+        .lunch {
+            background-color: #ffcc66;
+        }
+
+        .lab {
+            background-color: #ffff00;
+        }
+
+        .no-bottom-padding {
+            padding-bottom: 0 !important;
+        }
+    </style>
+</head>
+<body>
+    <h1><center>FACULTY TIMETABLE</center></h1>
+
+    <form>
+        <label for="faculty">Select Faculty:</label>
+        <select id="faculty" onchange="showTimetable()">
+            <option value="select">Select</option>
+            <option value="faculty1">Dr.Bagavathi Sivakumar P</option>
+            <option value="faculty2">Dr.Karthi R</option>
+            <option value="faculty3">Dr.Vidhya Balasubramanian</option>
+            <option value="faculty4">Dr.J Govindarajan</option>
+            <option value="faculty5">Dr.V Anantha Narayan</option>
+        </select>
+    </form>
+    <br>
+    <br>
+    <div id="timetable"></div>
+
+    <script>
+        var timetables = {
+            "faculty1": [
+                ["", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                ["Slot 1", "", "", "", "", "19CSE212-DSA"],
+                ["Slot 2", "19CSE305-ML", "19CSE103-UID", "", "", ""],
+                ["Slot 3", "", "", "", "", ""],
+                ["Slot 4", "Ph.D Scholar Mr. Vimal Kumar", "", "", "19CSE103-UID", "Ph.D Scholar Mr. Nakkeeran"],
+                ["Lunch Break", "", "", "", "", ""],
+                ["Slot 5", "Ph.D Scholar Praveen Vijai", "", "", "19CSE305-ML", ""],
+                ["Slot 6","", "", "", "", "" ],
+                ["Slot 7/8", "Ph.D Scholar Ramya G R", "19CSE181-ACP Lab", "19CSE103-UID Lab", "19CSE212-DSA Lab", "19CSE305-ML Lab"]
+            ],
+            "faculty2": [
+                ["", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                ["Slot 1", "19CSE334-Big Data Analysis", "", "19CSE334-Big Data Analysis", "", "19CSE334-Big Data Analysis"],
+                ["Slot 2", "", "19CSE334-Big Data Analysis", "", "19CSE334-Big Data Analysis", ""],
+                ["Slot 3", "19CSE334-Big Data Analysis", "19AI716-Datascience", "19CSE334-Big Data Analysis", "", "19CSE334-Big Data Analysis"],
+                ["Slot 4", "19AI716-Datascience", "19CSE334-Big Data Analysis", "", "19CSE334-Big Data Analysis", "19AI716-Datascience"],
+                ["Lunch Break", "", "", "", "", ""],
+                ["Slot 5", "Ph.D Scholar BA Sabarish", "Ph.D Scholar Gayathri V", "", "Project Review", ""],
+                ["Slot 6","", "", "Phd Scholar Remya P R", "Ph.D Scholar Ms. Sathiya R. R", "" ],
+                ["Slot 7/8", "19CSE334-Lab", "19AI716-Lab", "", "", "PG Project Guidance Mohith"]
+            ],
+            "faculty3": [
+                ["", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                ["Slot 1", "", "19CSE111-DS", "19CSE212-DSA", "", ""],
+                ["Slot 2", "Project Review", "UG Project Guidance-Group 80", "", "Ph.D Scholar Archana Rajan", ""],
+                ["Slot 3", "", "", "", "19CSE387-Open Lab Python", "19CSE212-DSA"],
+                ["Slot 4", "PG Project Guidance-Lanka Naga Sai Deep", "19CSE212-DSA", "Ph.D Scholar Vidhya S", "", "19CSE111-DS"],
+                ["Lunch Break", "", "", "", "", ""],
+                ["Slot 5", "", "", "", "UG Project Guidance-Group 76", ""],
+                ["Slot 6","", "", "", "Ph.D Scholar Anand", "19CSE212-Discussion Hour" ],
+                ["Slot 7/8", "", "19CSE334-Lab", "19CSE387-Lab", "", "19CSE212-Lab"]
+            ],
+            "faculty4": [
+                ["", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                ["Slot 1", "", "", "", "", ""],
+                ["Slot 2", "", "UG Project Guidance- Group No 96", "", "", ""],
+                ["Slot 3", "", "", "Ph.D Scholar Remya P R", "", ""],
+                ["Slot 4", "UG Project Guidance- Group No. 36", "", "", "", "Project Review"],
+                ["Lunch Break", "", "", "", "", ""],
+                ["Slot 5", "", "", "", "", "Mentoring Hour"],
+                ["Slot 6","PG Project Guidance Nithil Jose", "", "", "", "" ],
+                ["Slot 7/8", "19CSE-Lab", "", "", "19CSE377-Lab", ""]
+            ],
+            "faculty5": [
+                ["", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                ["Slot 1", "", "", "Ph.D Scholar Jigar", "", "19CSE211-COA"],
+                ["Slot 2", "", "", "19AI718-IoT for AI", "19CSE211-COA", "Project Review"],
+                ["Slot 3", "19AI718-IoT for AI", "19CSE211-COA", "Ph.D Scholar Hari", "", "Ph.D Scholar Vamsee"],
+                ["Slot 4", "UG Project Guidance Group 30", "", "", "Ph.D Scholar Nakkeeran", ""],
+                ["Lunch Break", "", "", "", "", ""],
+                ["Slot 5", "", "Ph.D Scholar Radhika K", "", "Mentoring Hour", ""],
+                ["Slot 6","19CSE211-Discussion Hour", "Ph.D Scholar Vidhya S S", "Ph.D Scholar Radhika G", "19AI718 Discussion Hour", "" ],
+                ["Slot 7/8", "19CSE211-Lab", "", "", "19CSECSE312-Lab", "19AI718-Lab"]
+            ],
+    
+        };
+
+        function showTimetable() {
+            var faculty = document.getElementById("faculty").value;
+            var timetable = timetables[faculty];
+
+            var tableHtml = "<table>";
+            for (var i = 0; i < timetable.length; i++) {
+                tableHtml += "<tr>";
+                for (var j = 0; j < timetable[i].length; j++) {
+                    var cellContent = timetable[i][j];
+                    var cellClass = "";
+
+                    if (i === 0 && j > 0) {
+                        cellClass = "no-bottom-padding";
+                    } else if (i === timetable.length - 1) {
+                        cellClass = "lab";
+                        if (timetable[i - 1][j] === "" && timetable[i - 2][j] === "") {
+                            cellClass += " no-bottom-padding";
+                        }
+                    } else if (i === (Math.floor(timetable.length / 2)+1) && j === 0) {
+                        cellClass = "lunch";
+                        cellContent = "Lunch Break";
+                        tableHtml += "<td class='" + cellClass + "' colspan='" + (timetable[i].length ) + "'>" + cellContent + "</td>";
+                        break;
+                    } else {
+                        cellClass = "slot";
+                    }
+
+                    tableHtml += "<td class='" + cellClass + "'>" + cellContent + "</td>";
+                }
+                tableHtml += "</tr>";
+            }
+            tableHtml += "</table>";
+
+            document.getElementById("timetable").innerHTML = tableHtml;
+        }
+    </script>
+</body>
+</html>
